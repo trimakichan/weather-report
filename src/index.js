@@ -9,9 +9,22 @@ const state = {
   decreaseTempButton: null,
 };
 
-
 const displayTemp = () => {
   state.tempDisplay.textContent = temp;
+  state.tempDisplay.classList.remove('red', 'teal', 'green', 'yellow', 'orange');
+
+  // refactor this later.
+  if (temp >= 80) {
+    state.tempDisplay.classList.add('red');
+  } else if (temp < 50) {
+    state.tempDisplay.classList.add('teal');
+  } else if (temp < 60) {
+    state.tempDisplay.classList.add('green');
+  } else if (temp < 70) {
+    state.tempDisplay.classList.add('yellow');
+  } else {
+    state.tempDisplay.classList.add('orange');
+  }
 };
 
 const changeTemp = (action) => {
