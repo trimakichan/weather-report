@@ -1,6 +1,8 @@
 // wave 2
 'use strict';
 
+let temp = 72;
+
 const state = {
   tempDisplay: null,
   increaseTempButton: null,
@@ -8,40 +10,24 @@ const state = {
 };
 
 
-let temp = 72;
-
 const displayTemp = () => {
   state.tempDisplay.textContent = temp;
 };
 
-const increaseTemp = () => {
-  console.log('up');
-  temp++;
+const changeTemp = (action) => {
+  action === 'up' ? temp++ : temp--;
   displayTemp();
 };
-
-const decreaseTemp = () => {
-  console.log('down');
-  temp--;
-  displayTemp();
-};
-
-// const increaseTempControl = () => {
-//   const increaseButton = document.querySelector('#increaseTempControl');
-//   increaseButton.addEventListener('click', increaseTemp);
-// }
 
 const registerEvents = () => {
-  state.increaseTempButton.addEventListener('click', increaseTemp);
-  state.decreaseTempButton.addEventListener('click', decreaseTemp);
+  state.increaseTempButton.addEventListener('click', () => changeTemp('up'));
+  state.decreaseTempButton.addEventListener('click', () => changeTemp('down'));
 };
 
 const loadControls = () => {
   state.tempDisplay = document.querySelector('#tempValue');
   state.increaseTempButton = document.querySelector('#increaseTempControl');
   state.decreaseTempButton= document.querySelector('#decreaseTempControl');
-
-  console.log(state);
 };
 
 const onLoaded = () => {
