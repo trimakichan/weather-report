@@ -1,35 +1,62 @@
-// wave 2
 'use strict';
 
+// ------------wave 2------------
 let temp = 72;
 
 const state = {
   tempDisplay: null,
   increaseTempButton: null,
   decreaseTempButton: null,
+  landscape: null,
 };
 
-const displayTemp = () => {
-  state.tempDisplay.textContent = temp;
-  state.tempDisplay.classList.remove('red', 'teal', 'green', 'yellow', 'orange');
-
-  // refactor this later.
-  if (temp >= 80) {
-    state.tempDisplay.classList.add('red');
-  } else if (temp < 50) {
-    state.tempDisplay.classList.add('teal');
-  } else if (temp < 60) {
-    state.tempDisplay.classList.add('green');
-  } else if (temp < 70) {
-    state.tempDisplay.classList.add('yellow');
-  } else {
-    state.tempDisplay.classList.add('orange');
+const TEMP_STYLES = {
+  80: {
+    class: 'red',
+    landscape: '🌵🐍🦂'
+  },
+  70: {
+    class: 'orange',
+    landscape: '🌼🌻🌱'
+  },
+  60: {
+    class: 'yellow',
+    landscape: '🌾🍂🐿️'
+  },
+  50: {
+    class: 'green',
+    landscape: '🌲🌳🍃'
+  },
+  40: {
+    class: 'teal',
+    landscape: '⛄️❄️⛷️'
   }
+};
+
+const displayTemp = (temp) => {
+  state.tempDisplay.textContent = `${temp} F`;
+};
+
+const applyTempStyles = (temp) => {
+  let flooredTemp = Math.floor(temp / 10) * 10;
+
+  if (flooredTemp < 40) flooredTemp = 40;
+  if (flooredTemp > 90) flooredTemp = 80;
+
+  const style = TEMP_STYLES[flooredTemp];
+
+  state.tempDisplay.className = style.class;
+  state.landscape.textContent = style.landscape;
+};
+
+const updateTempUI = (temp) => {
+  displayTemp(temp);
+  applyTempStyles(temp);
 };
 
 const changeTemp = (action) => {
   action === 'up' ? temp++ : temp--;
-  displayTemp();
+  updateTempUI(temp);
 };
 
 const registerEvents = () => {
@@ -40,13 +67,14 @@ const registerEvents = () => {
 const loadControls = () => {
   state.tempDisplay = document.querySelector('#tempValue');
   state.increaseTempButton = document.querySelector('#increaseTempControl');
-  state.decreaseTempButton= document.querySelector('#decreaseTempControl');
+  state.decreaseTempButton = document.querySelector('#decreaseTempControl');
+  state.landscape = document.querySelector('#sky');
 };
 
 const onLoaded = () => {
   loadControls();
   registerEvents();
-  displayTemp();
+  updateTempUI(temp);
 };
 
 onLoaded();
