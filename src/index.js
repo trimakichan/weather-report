@@ -22,23 +22,23 @@ const state = {
 const TEMP_STYLES = {
   80: {
     class: 'red',
-    landscape: '🌵🐍🦂'
+    landscape: '🌵🐍🦂🌵🐍🦂🌵🐍🦂🌵🐍🦂🌵🐍🦂🌵🐍🦂'
   },
   70: {
     class: 'orange',
-    landscape: '🌼🌻🌱'
+    landscape: '🌼🌻🌱🌼🌻🌱🌼🌻🌱🌼🌻🌱🌼🌻🌱🌼🌻🌱'
   },
   60: {
     class: 'yellow',
-    landscape: '🌾🍂🐿️'
+    landscape: '🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️'
   },
   50: {
     class: 'green',
-    landscape: '🌲🌳🍃'
+    landscape: '🌲🌳🍃🌲🌳🍃🌲🌳🍃🌲🌳🍃🌲🌳🍃🌲🌳🍃'
   },
   40: {
     class: 'teal',
-    landscape: '⛄️❄️⛷️'
+    landscape: '⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️'
   }
 };
 
@@ -69,9 +69,8 @@ const changeTemp = (action) => {
 };
 
 // ------------wave 3------------
-const updateCityName = (event) => {
-  const cityName = event.target.value;
-  state.cityNameDisplay.textContent = cityName;
+const updateCityName = (city) => {
+  state.cityNameDisplay.textContent = city;
 };
 
 // ------------wave 4------------
@@ -107,7 +106,7 @@ const changeSky = (sky) => {
 const registerEvents = () => {
   state.increaseTempButton.addEventListener('click', () => changeTemp('up'));
   state.decreaseTempButton.addEventListener('click', () => changeTemp('down'));
-  state.cityNameInput.addEventListener('input', (event) => updateCityName(event));
+  state.cityNameInput.addEventListener('input', (event) => updateCityName(event.target.value));
   state.skyDropdown.addEventListener('change', () => changeSky(state.skyDropdown.value));
   state.weatherButton.addEventListener('click', fetchWeather);
   state.cityNameResetButton.addEventListener('click', resetCityName);
@@ -130,6 +129,7 @@ const onLoaded = () => {
   loadControls();
   registerEvents();
   updateTempUI(temp);
+  updateCityName('Seattle');
 };
 
 onLoaded();
