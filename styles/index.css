@@ -1,31 +1,41 @@
 /* Solution adapted from Simon de Sal */
 
 h2 {
-    margin: 0 auto 2rem auto;
+    text-align: center;
 }
   
 body {
-display: grid;
-grid-template-columns: 1fr 2fr;
-grid-template-rows: auto auto auto auto;
-grid-gap: 1rem;
-
+margin: auto;
+max-width: 80%;
 font-family: "Rubik", sans-serif;
 font-size: 18px;
-background-color: #1b69f9;
-margin: 2rem;
+background-color: #477ada;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem
 }
 
 .header__header {
+text-align: center;
 color: white;
-grid-column: span 3;
+margin-bottom: 2rem;
+/* grid-column: span 3;
 display: flex;
 align-items: center;
-margin: 2rem auto 3rem 0;
+margin: 2rem auto 3rem 0; */
 }
 
 .header__header > h1 {
-margin-right: 2rem;
 font-size: 3em;
 }
 
@@ -42,9 +52,13 @@ content: "✨";
 .temperature__section,
 .sky__section,
 .city-name__section {
+flex: 1;
+height: 400px;
+display: flex;
+flex-direction: column;
 border-radius: 8px;
-padding: 2rem;
-background-color: white;
+padding: 1rem;
+background-color: rgba(255, 255, 255);
 }
 
 .temperature__section {
@@ -64,7 +78,20 @@ grid-row: 2;
 }
 
 .sky__section {
-grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sky__section select {
+  width: 300px;
+  padding: .5rem;
+}
+
+
+.sky__section img {
+  width: 200px;
 }
 
 .city-name__section {
@@ -72,24 +99,21 @@ grid-row: 4;
 }
 
 .garden__section {
-grid-row: 2 / span 3;
-grid-column: 2;
 text-align: center;
-align-self: center;
 }
 
 .temperature__content {
+height: 100%;
 display: flex;
-flex-direction: row;
-justify-content: space-around;
-/* justify-content: center; */
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 3rem;
 }
 
 #tempValue {
-font-size: 3rem;
+font-size: 5rem;
 margin-left: 1.5rem;
-/* padding-right: 1rem; */
-/* margin-right: 1.5rem; */
 }
 
 .temperature__controls {
