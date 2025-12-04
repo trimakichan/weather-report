@@ -8,6 +8,8 @@ const state = {
   increaseTempButton: null,
   decreaseTempButton: null,
   landscape: null,
+  skyDropdown: null,
+  skySection: null
 };
 
 const TEMP_STYLES = {
@@ -41,7 +43,7 @@ const applyTempStyles = (temp) => {
   let flooredTemp = Math.floor(temp / 10) * 10;
 
   if (flooredTemp < 40) flooredTemp = 40;
-  if (flooredTemp > 90) flooredTemp = 80;
+  if (flooredTemp > 80) flooredTemp = 80;
 
   const style = TEMP_STYLES[flooredTemp];
 
@@ -58,17 +60,34 @@ const changeTemp = (action) => {
   action === 'up' ? temp++ : temp--;
   updateTempUI(temp);
 };
+// ------------------------------
+
+// ------------wave 5------------
+const SKY_ICONS = {
+  sunny: 'assets/sunny.svg',
+  cloudy: 'assets/cloudy.svg',
+  rainy: 'assets/rain.svg',
+  snowy: 'assets/snow.svg'
+};
+
+const changeSky = (sky) => {
+  state.skySection.src = SKY_ICONS[sky];
+};
+// ------------------------------
 
 const registerEvents = () => {
   state.increaseTempButton.addEventListener('click', () => changeTemp('up'));
   state.decreaseTempButton.addEventListener('click', () => changeTemp('down'));
+  state.skyDropdown.addEventListener('change', () => changeSky(state.skyDropdown.value));
 };
 
 const loadControls = () => {
   state.tempDisplay = document.querySelector('#tempValue');
   state.increaseTempButton = document.querySelector('#increaseTempControl');
   state.decreaseTempButton = document.querySelector('#decreaseTempControl');
-  state.landscape = document.querySelector('#sky');
+  state.landscape = document.querySelector('#landscape');
+  state.skyDropdown = document.querySelector('#skySelect');
+  state.skySection = document.querySelector('#sky');
 };
 
 const onLoaded = () => {
@@ -78,4 +97,7 @@ const onLoaded = () => {
 };
 
 onLoaded();
+
+
+
 
