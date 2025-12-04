@@ -9,14 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/index.css">
-    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script defer src="./src/index.js"></script>
 </head>
 
 <body>
     <header class="header__header">
         <h1>Weather Report</h1>
-        <span>For the lovely city of 
+        <span>For the lovely city of
             <span id="headerCityName" class="header__city-name"></span></span>
     </header>
     <section class="temperature__section">
@@ -27,7 +25,7 @@
                 <span id="tempValue"></span>
                 <span id="decreaseTempControl">⬇️</span>
             </div>
-            <button id="currentTempButton">Get Realtime Temperature</button>
+            <button id="checkWeather">Get Realtime Temperature</button>
         </div>
     </section>
     <section class="sky__section">
@@ -42,7 +40,7 @@
 
     <section class="city-name__section">
         <h2>City Name</h2>
-        <input type="text" id="cityNameInput" value="Seattle">
+        <input type="text" id="cityNameInput" value="">
         <button id="cityNameReset" class="city-name__reset-btn">Reset</button>
     </section>
 
@@ -53,6 +51,10 @@
             <div id="landscape"></div>
         </div>
     </section>
+
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./src/API.js"></script>
+    <script defer src="./src/index.js"></script>
 </body>
 
 </html>

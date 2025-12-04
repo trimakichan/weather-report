@@ -62,6 +62,28 @@ const changeTemp = (action) => {
 const registerEvents = () => {
   state.increaseTempButton.addEventListener('click', () => changeTemp('up'));
   state.decreaseTempButton.addEventListener('click', () => changeTemp('down'));
+
+  // ------------wave 3------------
+  document.querySelector('#cityNameInput').addEventListener('input', (event) => {
+    const cityName = event.target.value;
+    document.querySelector('#headerCityName').textContent = cityName;
+  });
+
+  // ------------wave 4------------
+  // Update temperature when button is clicked
+  document.querySelector('#checkWeather').addEventListener('click', () => {
+    const cityName = document.querySelector('#cityNameInput').value;
+    findWeatherForCity(cityName).then((temps) => {
+      temp = Math.ceil(temps.fahrenheitTemp);
+      updateTempUI(temp);
+    });
+  });
+
+  // Reset city name when reset button is clicked
+  document.querySelector('#cityNameReset').addEventListener('click', () => {
+    document.querySelector('#cityNameInput').value = '';
+    document.querySelector('#headerCityName').textContent = '';
+  });
 };
 
 const loadControls = () => {
@@ -78,4 +100,3 @@ const onLoaded = () => {
 };
 
 onLoaded();
-
