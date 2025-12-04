@@ -1,6 +1,7 @@
+import { findWeatherForCity } from './API.js';
+
 'use strict';
 
-// ------------wave 2------------
 let temp = 72;
 
 const state = {
@@ -9,9 +10,15 @@ const state = {
   decreaseTempButton: null,
   landscape: null,
   skyDropdown: null,
-  skySection: null
+  skySection: null,
+  cityNameInput: null,
+  cityNameDisplay: null,
+  weatherButton: null,
+  cityNameResetButton: null
 };
 
+
+// ------------wave 2------------
 const TEMP_STYLES = {
   80: {
     class: 'red',
@@ -60,7 +67,30 @@ const changeTemp = (action) => {
   action === 'up' ? temp++ : temp--;
   updateTempUI(temp);
 };
-// ------------------------------
+
+// ------------wave 3------------
+const updateCityName = (event) => {
+  const cityName = event.target.value;
+  state.cityNameDisplay.textContent = cityName;
+};
+
+// ------------wave 4------------
+// Update temperature when button is clicked
+const fetchWeather = () => {
+  const cityName = state.cityNameInput.value;
+  findWeatherForCity(cityName).then((temps) => {
+    temp = Math.ceil(temps.fahrenheitTemp);
+    updateTempUI(temp);
+    return;
+  }).catch((err) => {
+    console.error('Failed to fetch', err);
+  });
+};
+
+const resetCityName = () => {
+  state.cityNameInput.value = '';
+  state.cityNameDisplay.textContent = '';
+};
 
 // ------------wave 5------------
 const SKY_ICONS = {
@@ -73,12 +103,14 @@ const SKY_ICONS = {
 const changeSky = (sky) => {
   state.skySection.src = SKY_ICONS[sky];
 };
-// ------------------------------
 
 const registerEvents = () => {
   state.increaseTempButton.addEventListener('click', () => changeTemp('up'));
   state.decreaseTempButton.addEventListener('click', () => changeTemp('down'));
+  state.cityNameInput.addEventListener('input', (event) => updateCityName(event));
   state.skyDropdown.addEventListener('change', () => changeSky(state.skyDropdown.value));
+  state.weatherButton.addEventListener('click', fetchWeather);
+  state.cityNameResetButton.addEventListener('click', resetCityName);
 };
 
 const loadControls = () => {
@@ -88,6 +120,10 @@ const loadControls = () => {
   state.landscape = document.querySelector('#landscape');
   state.skyDropdown = document.querySelector('#skySelect');
   state.skySection = document.querySelector('#sky');
+  state.cityNameInput = document.querySelector('#cityNameInput');
+  state.cityNameDisplay = document.querySelector('#headerCityName');
+  state.weatherButton = document.querySelector('#checkWeather');
+  state.cityNameResetButton = document.querySelector('#cityNameReset');
 };
 
 const onLoaded = () => {
@@ -97,3 +133,4 @@ const onLoaded = () => {
 };
 
 onLoaded();
+
