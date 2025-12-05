@@ -61,7 +61,11 @@ const updateTempUI = (temp) => {
 };
 
 const changeTemp = (action) => {
-  action === 'up' ? state.temp++ : state.temp--;
+  if (action === 'up') {
+    state.temp++;
+  } else if (action === 'down') {
+    state.temp--;
+  }
   updateTempUI(state.temp);
 };
 
@@ -76,7 +80,7 @@ const updateCityName = (city) => {
 // Update temperature when button is clicked
 const fetchWeather = () => {
   const cityName = state.cityNameInput.value;
-  window.findWeatherForCity(cityName).then((temps) => {
+  findWeatherForCity(cityName).then((temps) => {
     state.temp = Math.ceil(temps.fahrenheitTemp);
     updateTempUI(state.temp);
     return;
