@@ -1,5 +1,3 @@
-// import { findWeatherForCity } from './API.js';
-
 const DEFAULT_CITY = 'Seattle';
 
 const state = {
