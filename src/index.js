@@ -13,7 +13,7 @@ const state = {
   cityNameInput: null,
   cityNameDisplay: null,
   weatherButton: null,
-  cityNameResetButton: null
+  cityResetButton: null
 };
 
 // ------------wave 2------------
@@ -84,7 +84,7 @@ const fetchWeather = () => {
   });
 };
 
-const resetCityName = () => {
+const resetCityAndTemp = () => {
   state.cityNameInput.value = DEFAULT_CITY;
   state.cityNameDisplay.textContent = DEFAULT_CITY;
   state.temp = 72;
@@ -109,7 +109,7 @@ const registerEvents = () => {
   state.cityNameInput.addEventListener('input', (event) => updateCityName(event.target.value));
   state.skyDropdown.addEventListener('change', () => changeSky(state.skyDropdown.value));
   state.weatherButton.addEventListener('click', fetchWeather);
-  state.cityNameResetButton.addEventListener('click', resetCityName);
+  state.cityResetButton.addEventListener('click', resetCityAndTemp);
 };
 
 const loadControls = () => {
@@ -122,7 +122,7 @@ const loadControls = () => {
   state.cityNameInput = document.querySelector('#cityNameInput');
   state.cityNameDisplay = document.querySelector('#headerCityName');
   state.weatherButton = document.querySelector('#checkWeather');
-  state.cityNameResetButton = document.querySelector('#cityNameReset');
+  state.cityResetButton = document.querySelector('#cityNameReset');
 };
 
 const onLoaded = () => {
