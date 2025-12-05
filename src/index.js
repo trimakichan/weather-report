@@ -1,4 +1,4 @@
-import { findWeatherForCity } from './API.js';
+// import { findWeatherForCity } from './API.js';
 
 const DEFAULT_CITY = 'Seattle';
 
