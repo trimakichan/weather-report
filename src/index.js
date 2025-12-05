@@ -1,10 +1,9 @@
 import { findWeatherForCity } from './API.js';
 
-'use strict';
-
-let temp = 72;
+const DEFAULT_CITY = 'Seattle';
 
 const state = {
+  temp: 72,
   tempDisplay: null,
   increaseTempButton: null,
   decreaseTempButton: null,
@@ -14,31 +13,31 @@ const state = {
   cityNameInput: null,
   cityNameDisplay: null,
   weatherButton: null,
-  cityNameResetButton: null
+  cityResetButton: null
 };
 
-
 // ------------wave 2------------
+
 const TEMP_STYLES = {
   80: {
     class: 'red',
-    landscape: '🌵🐍🦂'
+    landscape: '🌵🐍🦂🌵🐍🦂🌵🐍🦂🌵🐍🦂🌵🐍🦂🌵🐍🦂'
   },
   70: {
     class: 'orange',
-    landscape: '🌼🌻🌱'
+    landscape: '🌼🌻🌱🌼🌻🌱🌼🌻🌱🌼🌻🌱🌼🌻🌱🌼🌻🌱'
   },
   60: {
     class: 'yellow',
-    landscape: '🌾🍂🐿️'
+    landscape: '🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️🌾🍂🐿️'
   },
   50: {
     class: 'green',
-    landscape: '🌲🌳🍃'
+    landscape: '🌲🌳🍃🌲🌳🍃🌲🌳🍃🌲🌳🍃🌲🌳🍃🌲🌳🍃'
   },
   40: {
     class: 'teal',
-    landscape: '⛄️❄️⛷️'
+    landscape: '⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️⛄️❄️⛷️'
   }
 };
 
@@ -64,35 +63,32 @@ const updateTempUI = (temp) => {
 };
 
 const changeTemp = (action) => {
-  action === 'up' ? temp++ : temp--;
-  updateTempUI(temp);
+  action === 'up' ? state.temp++ : state.temp--;
+  updateTempUI(state.temp);
 };
 
 // ------------wave 3------------
-const updateCityName = (event) => {
-  const cityName = event.target.value;
-  state.cityNameDisplay.textContent = cityName;
+
+const updateCityName = (city) => {
+  state.cityNameDisplay.textContent = city;
 };
 
 // ------------wave 4------------
+
 // Update temperature when button is clicked
 const fetchWeather = () => {
   const cityName = state.cityNameInput.value;
   findWeatherForCity(cityName).then((temps) => {
-    temp = Math.ceil(temps.fahrenheitTemp);
-    updateTempUI(temp);
+    state.temp = Math.ceil(temps.fahrenheitTemp);
+    updateTempUI(state.temp);
     return;
   }).catch((err) => {
     console.error('Failed to fetch', err);
   });
 };
 
-const resetCityName = () => {
-  state.cityNameInput.value = '';
-  state.cityNameDisplay.textContent = '';
-};
-
 // ------------wave 5------------
+
 const SKY_ICONS = {
   sunny: 'assets/sunny.svg',
   cloudy: 'assets/cloudy.svg',
@@ -104,13 +100,22 @@ const changeSky = (sky) => {
   state.skySection.src = SKY_ICONS[sky];
 };
 
+// ------------wave 6------------
+
+const resetCityAndTemp = () => {
+  state.cityNameInput.value = DEFAULT_CITY;
+  state.cityNameDisplay.textContent = DEFAULT_CITY;
+  state.temp = 72;
+  updateTempUI(state.temp);
+};
+
 const registerEvents = () => {
   state.increaseTempButton.addEventListener('click', () => changeTemp('up'));
   state.decreaseTempButton.addEventListener('click', () => changeTemp('down'));
-  state.cityNameInput.addEventListener('input', (event) => updateCityName(event));
+  state.cityNameInput.addEventListener('input', (event) => updateCityName(event.target.value));
   state.skyDropdown.addEventListener('change', () => changeSky(state.skyDropdown.value));
   state.weatherButton.addEventListener('click', fetchWeather);
-  state.cityNameResetButton.addEventListener('click', resetCityName);
+  state.cityResetButton.addEventListener('click', resetCityAndTemp);
 };
 
 const loadControls = () => {
@@ -123,14 +128,14 @@ const loadControls = () => {
   state.cityNameInput = document.querySelector('#cityNameInput');
   state.cityNameDisplay = document.querySelector('#headerCityName');
   state.weatherButton = document.querySelector('#checkWeather');
-  state.cityNameResetButton = document.querySelector('#cityNameReset');
+  state.cityResetButton = document.querySelector('#cityNameReset');
 };
 
 const onLoaded = () => {
   loadControls();
   registerEvents();
-  updateTempUI(temp);
+  updateTempUI(state.temp);
+  updateCityName(DEFAULT_CITY);
 };
 
 onLoaded();
-
