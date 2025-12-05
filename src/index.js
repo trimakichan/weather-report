@@ -1,10 +1,9 @@
 import { findWeatherForCity } from './API.js';
 
-'use strict';
-
-let temp = 72;
+const DEFAULT_CITY = 'Seattle';
 
 const state = {
+  temp: 72,
   tempDisplay: null,
   increaseTempButton: null,
   decreaseTempButton: null,
@@ -16,7 +15,6 @@ const state = {
   weatherButton: null,
   cityNameResetButton: null
 };
-
 
 // ------------wave 2------------
 const TEMP_STYLES = {
@@ -64,8 +62,8 @@ const updateTempUI = (temp) => {
 };
 
 const changeTemp = (action) => {
-  action === 'up' ? temp++ : temp--;
-  updateTempUI(temp);
+  action === 'up' ? state.temp++ : state.temp--;
+  updateTempUI(state.temp);
 };
 
 // ------------wave 3------------
@@ -78,8 +76,8 @@ const updateCityName = (city) => {
 const fetchWeather = () => {
   const cityName = state.cityNameInput.value;
   findWeatherForCity(cityName).then((temps) => {
-    temp = Math.ceil(temps.fahrenheitTemp);
-    updateTempUI(temp);
+    state.temp = Math.ceil(temps.fahrenheitTemp);
+    updateTempUI(state.temp);
     return;
   }).catch((err) => {
     console.error('Failed to fetch', err);
@@ -87,8 +85,10 @@ const fetchWeather = () => {
 };
 
 const resetCityName = () => {
-  state.cityNameInput.value = '';
-  state.cityNameDisplay.textContent = '';
+  state.cityNameInput.value = DEFAULT_CITY;
+  state.cityNameDisplay.textContent = DEFAULT_CITY;
+  state.temp = 72;
+  updateTempUI(state.temp);
 };
 
 // ------------wave 5------------
@@ -128,9 +128,8 @@ const loadControls = () => {
 const onLoaded = () => {
   loadControls();
   registerEvents();
-  updateTempUI(temp);
-  updateCityName('Seattle');
+  updateTempUI(state.temp);
+  updateCityName(DEFAULT_CITY);
 };
 
 onLoaded();
-

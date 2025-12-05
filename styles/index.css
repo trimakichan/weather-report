@@ -1,15 +1,15 @@
 /* Solution adapted from Simon de Sal */
 
 h2 {
-    text-align: center;
+  text-align: center;
 }
-  
+
 body {
-margin: auto;
-max-width: 80%;
-font-family: "Rubik", sans-serif;
-font-size: 18px;
-background-color: #477ada;
+  margin: auto;
+  max-width: 80%;
+  font-family: "Rubik", sans-serif;
+  font-size: 18px;
+  background-color: #477ada;
 }
 
 .wrapper {
@@ -22,59 +22,51 @@ background-color: #477ada;
 .content-wrapper {
   display: flex;
   justify-content: center;
-  gap: 2rem
+  gap: 2rem;
 }
 
 .header__header {
-text-align: center;
-color: white;
-margin-bottom: 2rem;
-/* grid-column: span 3;
-display: flex;
-align-items: center;
-margin: 2rem auto 3rem 0; */
+  text-align: center;
+  color: white;
+  margin-bottom: 2rem;
 }
 
-.header__header > h1 {
-font-size: 3em;
+.header__header>h1 {
+  font-size: 3em;
 }
 
 .header__city-name {
-font-style: oblique;
-font-size: 2rem;
+  font-style: oblique;
+  font-size: 2rem;
 }
 
 .header__city-name::before,
 .header__city-name::after {
-content: "✨";
+  content: "✨";
 }
 
 .temperature__section,
 .sky__section,
 .city-name__section {
-flex: 1;
-height: 400px;
-display: flex;
-flex-direction: column;
-border-radius: 8px;
-padding: 1rem;
-background-color: rgba(255, 255, 255);
-}
-
-.temperature__section {
-grid-row: 2;
+  flex: 1;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255);
 }
 
 .temperature__section button {
-    background-color: #1b69f9;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 10px
+  background-color: #1b69f9;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px
 }
 
 .sky__section {
@@ -89,102 +81,93 @@ grid-row: 2;
   padding: .5rem;
 }
 
-
 .sky__section img {
   width: 200px;
 }
 
-.city-name__section {
-grid-row: 4;
-}
-
-.garden__section {
-text-align: center;
-}
-
 .temperature__content {
-height: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 3rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
 }
 
 #tempValue {
-font-size: 5rem;
-margin-left: 1.5rem;
+  font-size: 5rem;
+  margin-left: 1.5rem;
 }
 
 .temperature__controls {
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.garden__section > h2 {
-color: white;
+.garden__section>h2 {
+  color: white;
 }
 
 .garden__content {
-min-height: 200px;
-max-width: fit-content;
-margin: auto;
-padding: 2rem;
+  min-height: 200px;
+  max-width: fit-content;
+  margin: auto;
+  padding: 2rem;
 
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-border-radius: 8px;
-font-size: 2em;
+  border-radius: 8px;
+  font-size: 2em;
 }
 
 .city-name__reset-btn {
-border: 0;
-background-color: #1655cc;
-color: white;
-border-radius: 8px;
-padding: 1rem;
-font-family: "Rubik", sans-serif;
+  border: 0;
+  background-color: #1655cc;
+  color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: "Rubik", sans-serif;
 }
 
 .red {
-color: red;
+  color: red;
 }
 
 .orange {
-color: orange;
+  color: orange;
 }
 
 .yellow {
-color: gold;
+  color: gold;
 }
 
 .yellow-green {
-color: yellowgreen;
+  color: yellowgreen;
 }
 
 .green {
-color: green;
+  color: green;
 }
 
 .teal {
-color: teal;
+  color: teal;
 }
 
 .cloudy {
-background-color: lightgrey;
+  background-color: lightgrey;
 }
 
 .sunny {
-background-color: rgb(221, 255, 255);
+  background-color: rgb(221, 255, 255);
 }
 
 .rainy {
-background-color: lightblue;
+  background-color: lightblue;
 }
 
 .snowy {
-background-color: lightsteelblue;
+  background-color: lightsteelblue;
 }
