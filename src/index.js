@@ -76,7 +76,7 @@ const updateCityName = (city) => {
 // Update temperature when button is clicked
 const fetchWeather = () => {
   const cityName = state.cityNameInput.value;
-  findWeatherForCity(cityName).then((temps) => {
+  window.findWeatherForCity(cityName).then((temps) => {
     state.temp = Math.ceil(temps.fahrenheitTemp);
     updateTempUI(state.temp);
     return;
