@@ -1,4 +1,4 @@
-const proxyServer = 'http://127.0.0.1:5000';
+const proxyServer = 'https://ada-weather-report-proxy-server.onrender.com';
 
 const findLatitudeAndLongitude = (query) => {
   let latitude, longitude;
