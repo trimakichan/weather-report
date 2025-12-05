@@ -17,6 +17,7 @@ const state = {
 };
 
 // ------------wave 2------------
+
 const TEMP_STYLES = {
   80: {
     class: 'red',
@@ -67,11 +68,13 @@ const changeTemp = (action) => {
 };
 
 // ------------wave 3------------
+
 const updateCityName = (city) => {
   state.cityNameDisplay.textContent = city;
 };
 
 // ------------wave 4------------
+
 // Update temperature when button is clicked
 const fetchWeather = () => {
   const cityName = state.cityNameInput.value;
@@ -84,14 +87,8 @@ const fetchWeather = () => {
   });
 };
 
-const resetCityAndTemp = () => {
-  state.cityNameInput.value = DEFAULT_CITY;
-  state.cityNameDisplay.textContent = DEFAULT_CITY;
-  state.temp = 72;
-  updateTempUI(state.temp);
-};
-
 // ------------wave 5------------
+
 const SKY_ICONS = {
   sunny: 'assets/sunny.svg',
   cloudy: 'assets/cloudy.svg',
@@ -101,6 +98,15 @@ const SKY_ICONS = {
 
 const changeSky = (sky) => {
   state.skySection.src = SKY_ICONS[sky];
+};
+
+// ------------wave 6------------
+
+const resetCityAndTemp = () => {
+  state.cityNameInput.value = DEFAULT_CITY;
+  state.cityNameDisplay.textContent = DEFAULT_CITY;
+  state.temp = 72;
+  updateTempUI(state.temp);
 };
 
 const registerEvents = () => {
