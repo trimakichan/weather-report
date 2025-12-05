@@ -27,7 +27,7 @@ const findCurrentWeather = (latitude, longitude) => {
     });
 };
 
-export const findWeatherForCity = (cityName) => {
+const findWeatherForCity = (cityName) => {
   return findLatitudeAndLongitude(cityName).then(({ latitude, longitude }) => {
     return findCurrentWeather(latitude, longitude);
   });
